@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>ROLOX | Indisponível</title>
+    <style>
+        body { background: #050505; color: #fff; font-family: 'Inter', sans-serif; padding: 40px; }
+        .container { max-width: 700px; margin: auto; background: #1a1a1a; padding: 30px; border: 2px solid #555; }
+        .info { background: #000; padding: 15px; margin-top: 20px; border-left: 4px solid #555; }
+        .val { color: #aaa; font-weight: bold; }
+        h1 { color: #fff; text-transform: uppercase; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 id="error-title">VERIFICANDO STATUS...</h1>
+    <p id="error-desc">Processando solicitação do sistema...</p>
+    
+    <div class="info">
+        <p>Referência: <span id="display-url" class="val"></span></p>
+        <p>Usuário: <span id="display-user" class="val"></span></p>
+        <p>ID do Usuário: <span id="display-id" class="val"></span></p>
+    </div>
+</div>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const erro = params.get('erro');
+    
+    // Preenche informações básicas
+    document.getElementById('display-url').innerText = params.get('page-or-url') || 'N/A';
+    document.getElementById('display-user').innerText = params.get('username') || 'N/A';
+    document.getElementById('display-id').innerText = params.get('iduser') || '0';
+
+    // Define títulos baseados no erro
+    const titleEl = document.getElementById('error-title');
+    const descEl = document.getElementById('error-desc');
+
+    if (erro === 'sem_suporte') {
+        titleEl.innerText = "SEM SUPORTE";
+        descEl.innerText = "Esta página não possui mais suporte técnico pela equipe de desenvolvimento do Rolox.";
+    } else if (erro === 'ui_antiga') {
+        titleEl.innerText = "UI ANTIGA";
+        descEl.innerText = "Esta interface está desatualizada e foi desativada pela equipe de desenvolvimento.";
+    } else {
+        titleEl.innerText = "INFORMAÇÃO DO SISTEMA";
+        descEl.innerText = "O acesso a este conteúdo foi alterado pela equipe do Rolox.";
+    }
+</script>
+
+</body>
+</html>
