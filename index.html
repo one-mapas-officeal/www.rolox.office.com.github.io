@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | ROLOX - Global Innovation</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap');
+        
+        body { background: #050505; color: #fff; font-family: 'Inter', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .login-card { background: #0f0f0f; padding: 40px; border: 1px solid #333; width: 100%; max-width: 400px; text-align: center; }
+        h1 { font-size: 2em; margin-bottom: 20px; }
+        .highlight { color: #ff3333; }
+        button { background: #ff3333; color: white; border: none; padding: 15px; width: 100%; cursor: pointer; font-weight: bold; margin-top: 10px; }
+        .studio-msg { margin-top: 20px; font-size: 0.75em; color: #888; }
+    </style>
+</head>
+<body>
+
+<div class="login-card">
+    <h1>ROLOX <span class="highlight">LOGIN</span></h1>
+    <p>Acesso automático para convidados.</p>
+    
+    <button onclick="entrarDireto()">ENTRAR NO ROLOX</button>
+
+    <div class="studio-msg">
+        ROLOX STUDIO: LANÇAMENTO OFICIAL 01/01/2028
+    </div>
+</div>
+
+<script>
+function entrarDireto() {
+    // Dados padrão para o rolox_guest.beta
+    const user = "rolox_guest.beta";
+    const senha = "null";
+    const beta = "1";
+    const ticks = "error";
+    
+    // Redirecionamento imediato para a home com os parâmetros
+    window.location.href = `home.html?beta=${beta}&ticks=${ticks}&username=${user}&senha=${senha}`;
+}
+</script>
+
+</body>
+</html>
