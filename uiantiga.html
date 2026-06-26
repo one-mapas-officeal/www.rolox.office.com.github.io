@@ -2,13 +2,19 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>ROLOX | Indisponível</title>
+    <title>ROLOX | Status do Sistema</title>
     <style>
         body { background: #050505; color: #fff; font-family: 'Inter', sans-serif; padding: 40px; }
         .container { max-width: 700px; margin: auto; background: #1a1a1a; padding: 30px; border: 2px solid #555; }
         .info { background: #000; padding: 15px; margin-top: 20px; border-left: 4px solid #555; }
         .val { color: #aaa; font-weight: bold; }
         h1 { color: #fff; text-transform: uppercase; }
+        
+        /* Botões */
+        .btn-container { margin-top: 30px; display: flex; gap: 15px; }
+        button { padding: 10px 20px; border: none; cursor: pointer; font-weight: bold; }
+        .btn-entrar { background: #0056b3; color: white; }
+        .btn-voltar { background: #333; color: white; }
     </style>
 </head>
 <body>
@@ -22,18 +28,22 @@
         <p>Usuário: <span id="display-user" class="val"></span></p>
         <p>ID do Usuário: <span id="display-id" class="val"></span></p>
     </div>
+
+    <div class="btn-container">
+        <button class="btn-entrar" onclick="entrarMesmoAssim()">Entrar mesmo assim</button>
+        <button class="btn-voltar" onclick="window.history.back()">Voltar</button>
+    </div>
 </div>
 
 <script>
     const params = new URLSearchParams(window.location.search);
     const erro = params.get('erro');
+    const targetUrl = params.get('page-or-url');
     
-    // Preenche informações básicas
-    document.getElementById('display-url').innerText = params.get('page-or-url') || 'N/A';
+    document.getElementById('display-url').innerText = targetUrl || 'N/A';
     document.getElementById('display-user').innerText = params.get('username') || 'N/A';
     document.getElementById('display-id').innerText = params.get('iduser') || '0';
 
-    // Define títulos baseados no erro
     const titleEl = document.getElementById('error-title');
     const descEl = document.getElementById('error-desc');
 
@@ -46,6 +56,14 @@
     } else {
         titleEl.innerText = "INFORMAÇÃO DO SISTEMA";
         descEl.innerText = "O acesso a este conteúdo foi alterado pela equipe do Rolox.";
+    }
+
+    function entrarMesmoAssim() {
+        if (targetUrl) {
+            window.location.href = targetUrl;
+        } else {
+            alert("URL de destino inválida.");
+        }
     }
 </script>
 
